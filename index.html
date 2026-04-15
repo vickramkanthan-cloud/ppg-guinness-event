@@ -1,18 +1,451 @@
-<!DOCTYPE html>
+ <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PPG Guinness Event</title>
-  <link rel="stylesheet" href="css/theme.css">
-</head>
-<body>
-  <h1>PPG Guinness Event</h1>
-<h2>abcd</h2>
-<h3>xyz</h3>
-<h4>vicky</h4>
-<h5>kvd</h5>
-  <script src="js/particles.js"></script>
-  <script src="js/engine.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POINT PIKKER GROUP | Enterprise IT Architecture</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      :root {
+        --primary: #0ea5e9;
+        --dark: #020617;
+        --glass: rgba(15, 23, 42, 0.7);
+        --border: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--dark);
+        color: white;
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+      }
+
+      /* Progress Bar */
+      .progress-container {
+        position: fixed;
+        top: 0;
+        z-index: 1001;
+        width: 100%;
+        height: 4px;
+        background: transparent;
+      }
+      .progress-bar {
+        height: 4px;
+        background: var(--primary);
+        width: 0%;
+      }
+
+      /* Navigation & Mega Menu */
+      .header {
+        position: sticky;
+        top: 0;
+        background: var(--glass);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        padding: 1rem 5%;
+      }
+      .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .brand {
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
+      .nav-menu {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      .nav-item {
+        position: relative;
+        cursor: pointer;
+      }
+      .mega-menu {
+        position: absolute;
+        top: 100%;
+        left: -50%;
+        width: 400px;
+        background: #1e293b;
+        display: none;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-top: 1rem;
+        border: 1px solid var(--primary);
+      }
+      .nav-item:hover .mega-menu {
+        display: block;
+      }
+
+      /* Hero Split */
+      .hero-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 90vh;
+        align-items: center;
+        padding: 0 5%;
+      }
+      .hero-info h1 {
+        font-size: 4.5rem;
+        line-height: 1.1;
+        margin: 1.5rem 0;
+      }
+      .text-glow {
+        color: var(--primary);
+        text-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+      }
+      .hero-visual {
+        height: 500px;
+        background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.3;
+      }
+
+      /* Services Grid */
+      .ecosystem {
+        padding: 100px 5%;
+      }
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .e-card {
+        padding: 3rem;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        transition: 0.4s;
+      }
+      .e-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-10px);
+        background: rgba(14, 165, 233, 0.05);
+      }
+
+      /* Timeline */
+      .timeline-section {
+        padding: 100px 5%;
+        background: #010409;
+      }
+      .timeline {
+        position: relative;
+        border-left: 2px solid var(--primary);
+        margin-left: 20px;
+        padding-left: 40px;
+      }
+      .t-item {
+        margin-bottom: 50px;
+        position: relative;
+      }
+      .t-item::before {
+        content: "";
+        position: absolute;
+        left: -51px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+
+      /* Slider Section */
+      .blog-slider-section {
+        padding: 100px 5%;
+      }
+      .blog-card {
+        background: #1e293b;
+        border-radius: 20px;
+        overflow: hidden;
+        height: auto !important;
+      }
+      .blog-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+      .blog-content {
+        padding: 2rem;
+      }
+
+      /* Footer */
+      .corporate-footer {
+        background: #010409;
+        padding: 80px 5% 20px;
+        border-top: 1px solid var(--border);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 4rem;
+        margin-bottom: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-container">
+      <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <header class="header">
+      <nav class="nav-wrapper">
+        <div class="brand">POINT PIKKER <span>GROUP</span></div>
+        <div class="nav-menu">
+          <div class="nav-item">
+            Solutions <i class="fas fa-chevron-down"></i>
+            <div class="mega-menu">
+              <div class="mega-content">
+                <div>
+                  <h4>Development</h4>
+                  <p>MERN Stack</p>
+                  <p>UI/UX Design</p>
+                </div>
+                <div>
+                  <h4>Infrastructure</h4>
+                  <p>AWS Cloud</p>
+                  <p>DevOps Automation</p>
+                </div>
+                <div>
+                  <h4>Security</h4>
+                  <p>Secure LMS</p>
+                  <p>Data Integrity</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#process">Process</a>
+          <a href="#knowledge">Knowledge Center</a>
+          <a href="#contact" class="contact-pill">Start a Project</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero-split">
+      <div class="hero-info">
+        <h6 data-aos="fade-right">STRATEGY . DESIGN . DEVELOPMENT</h6>
+        <h1 data-aos="fade-up" data-aos-delay="200">
+          Scale Your Vision with
+          <span class="text-glow">Precision Engineering.</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="400">
+          From Chennai to the global stage, we deliver high-performance AWS
+          architectures and futuristic UI/UX for modern enterprises.
+        </p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="600">
+          <button class="primary-btn">Our Ventures</button>
+          <button class="secondary-btn">Watch Showreel</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="abstract-shape"></div>
+      </div>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat-item">
+        <h2>40+</h2>
+        <p>Design Iterations per Project</p>
+      </div>
+      <div class="stat-item">
+        <h2>99.9%</h2>
+        <p>AWS Uptime Guaranteed</p>
+      </div>
+      <div class="stat-item">
+        <h2>500+</h2>
+        <p>Students Mentored</p>
+      </div>
+      <div class="stat-item">
+        <h2>100%</h2>
+        <p>Secure LMS Protocols</p>
+      </div>
+    </section>
+
+    <section id="services" class="ecosystem">
+      <div class="section-header">
+        <h2>The Ecosystem</h2>
+        <p>
+          Comprehensive IT solutions tailored for the 2026 digital landscape.
+        </p>
+      </div>
+      <div class="service-grid">
+        <div class="e-card glass" data-aos="flip-left">
+          <div class="card-icon"><i class="fas fa-microchip"></i></div>
+          <h3>Next-Gen UI/UX</h3>
+          <p>
+            Specialized in glassmorphism and cinematic sliders that redefine
+            user engagement.
+          </p>
+          <ul>
+            <li>Visual Hierarchy</li>
+            <li>Prototyping</li>
+            <li>React Integration</li>
+          </ul>
+        </div>
+        <div class="e-card glass" data-aos="flip-left" data-aos-delay="200">
+          <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Cloud Operations</h3>
+          <p>
+            Enterprise-grade AWS infrastructure (S3, CloudFront, EC2) with
+            zero-downtime deployment.
+          </p>
+          <ul>
+            <li>CI/CD Pipelines</li>
+            <li>Dockerization</li>
+            <li>Auto-scaling</li>
+          </ul>
+        </div>
+        <div class="e-card glass" data-aos="flip-left" data-aos-delay="400">
+          <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+          <h3>Secure LMS</h3>
+          <p>
+            Proprietary video hosting security preventing screen recording and
+            unauthorized downloads.
+          </p>
+          <ul>
+            <li>AES Encryption</li>
+            <li>Dynamic Watermarking</li>
+            <li>PHP/MySQL Core</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="timeline-section">
+      <h2>Our Roadmap</h2>
+      <div class="timeline">
+        <div class="t-item" data-aos="fade-left">
+          <h4>01. Discovery</h4>
+          <p>Analyzing business requirements and UI/UX mapping.</p>
+        </div>
+        <div class="t-item" data-aos="fade-right">
+          <h4>02. Architecture</h4>
+          <p>Setting up AWS instances and database schemas.</p>
+        </div>
+        <div class="t-item" data-aos="fade-left">
+          <h4>03. Iteration</h4>
+          <p>Refining designs with 40+ versions for perfection.</p>
+        </div>
+        <div class="t-item" data-aos="fade-right">
+          <h4>04. Deployment</h4>
+          <p>Automated Jenkins pipelines for live launch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="knowledge" class="blog-slider-section">
+      <h2>Knowledge Center</h2>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide blog-card">
+            <img
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+              alt=""
+            />
+            <div class="blog-content">
+              <span>DevOps</span>
+              <h3>Mastering AWS CloudFront</h3>
+              <p>
+                A deep dive into edge location caching for global performance...
+              </p>
+            </div>
+          </div>
+          <div class="swiper-slide blog-card">
+            <img
+              src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80"
+              alt=""
+            />
+            <div class="blog-content">
+              <span>Design</span>
+              <h3>The Glassmorphism Era</h3>
+              <p>Why depth and blur are taking over corporate interfaces...</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <footer class="corporate-footer">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>POINT PIKKER</h3>
+          <p>
+            Chennai's leading IT architecture firm specializing in cloud and
+            security.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <p>About Us</p>
+          <p>Ventures</p>
+          <p>Careers</p>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>Adyar, Chennai, TN, India</p>
+          <p>contact@pointpikker.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Point Pikker Group. Engineered by PPG Labs.
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({ duration: 1000, once: false });
+
+      // Initialize Swiper for Blog
+      const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: { el: ".swiper-pagination", clickable: true },
+        breakpoints: {
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+
+      // Scroll Progress Bar
+      window.onscroll = function () {
+        let winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        let height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      };
+
+      // Smooth Anchor Scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
